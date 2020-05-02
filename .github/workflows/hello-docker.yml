@@ -1,0 +1,16 @@
+name: Hello Docker
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-push:
+    name: Run Hello Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source
+        uses: actions/checkout@master
+      - name: push image (default make target)
+        run: make
