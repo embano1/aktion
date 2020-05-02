@@ -13,4 +13,7 @@ jobs:
       - name: checkout source
         uses: actions/checkout@master
       - name: push image (default make target)
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_SECRET }}
         run: make
