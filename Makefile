@@ -1,6 +1,6 @@
 IMAGE=embano1/hello-aktion
 
-PHONY: build push
+.PHONY: build push
 
 default: push
 
@@ -10,5 +10,5 @@ login:
 build: 
 	docker build -t ${IMAGE}:${GITHUB_SHA} .
 
-push:
+push: login build 
 	docker push ${IMAGE}:${GITHUB_SHA}
