@@ -12,8 +12,12 @@ jobs:
     steps:
       - name: checkout source
         uses: actions/checkout@master
+      - name: Filesystem details before login
+        run: ls -al /home/runner/.docker/ || true; cat /home/runner/.docker/config.json || true
       - name: push image (default make target)
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
         run: make
+      - name: Filesystem details after login
+        run: ls -al /home/runner/.docker/ || true; cat /home/runner/.docker/config.json || true
