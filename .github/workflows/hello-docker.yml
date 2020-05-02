@@ -15,5 +15,5 @@ jobs:
       - name: push image (default make target)
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_SECRET }}
+          DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
         run: make

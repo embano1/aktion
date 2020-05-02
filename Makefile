@@ -5,7 +5,7 @@ IMAGE=embano1/hello-aktion
 default: push
 
 login:
-	docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+	echo ${DOCKER_SECRET} | docker login -u ${DOCKER_USER} --password-stdin
 
 build: 
 	docker build -t ${IMAGE}:${GITHUB_SHA} .
