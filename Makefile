@@ -1,5 +1,5 @@
 IMAGE=embano1/hello-aktion
-TAG=$(subst refs/tags,,${GITHUB_REF})
+TAG=$(subst refs/tags/,,${GITHUB_REF})
 
 .PHONY: build push
 
