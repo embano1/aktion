@@ -6,7 +6,7 @@ on:
       - 'release-*'
 
 jobs:
-  say hello:
+  say_hello:
     name: Say Hello
     runs-on: ubuntu-latest
     steps:
