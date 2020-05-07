@@ -1,0 +1,19 @@
+name: Hello Docker
+
+on:
+  push:
+    branches:
+      - 'release-*'
+
+jobs:
+  say hello:
+    name: Say Hello
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source
+        uses: actions/checkout@master
+      - name: Print ref
+        run: echo "ref is $GITHUB_REF"
+      - name: Say Hello
+        run: echo "Hello World!"
+        
