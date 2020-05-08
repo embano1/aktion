@@ -13,8 +13,7 @@ func Test_count(t *testing.T) {
 		want int
 	}{
 		{name: "1+2", args: args{1, 2}, want: 3},
-		{name: "2+2", args: args{2, 2}, want: 3}, // I can't count
-
+		{name: "2+2", args: args{2, 2}, want: 4},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
