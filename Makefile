@@ -13,3 +13,6 @@ build:
 
 push: login build 
 	docker push ${IMAGE}:${TAG}
+
+tests:
+	go test ./...
