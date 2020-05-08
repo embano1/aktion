@@ -1,19 +1,29 @@
-name: Hello Release
+name: Build and push VMware Event Router Pre-Release to Docker Hub
 
 on:
   push:
     branches:
-      - 'release-*'
+      - release-*
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./vmware-event-router
 
 jobs:
-  say_hello:
-    name: Say Hello
+  build-push:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout source
+      - name: checkout source (master branch)
         uses: actions/checkout@master
-      - name: Print ref
-        run: echo "ref is $GITHUB_REF"
-      - name: Say Hello
-        run: echo "Hello World!"
-        
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      - name: test, build and push image
+        env: 
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
+        run: |
+          echo "Building pre-release image with version $VERSION"
+          make
