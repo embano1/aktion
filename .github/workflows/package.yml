@@ -1,0 +1,33 @@
+name: Create Container Images after Release
+
+on:
+  release:
+    types:
+    - published
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_SECRET }}
+          repository: embano1/greeter
+          tags: latest
+          tag_with_ref: true
+          add_git_labels: true
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: embano1/aktion/greeter
+          tags: latest
+          tag_with_ref: true
+          add_git_labels: true
