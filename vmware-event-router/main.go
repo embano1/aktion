@@ -6,4 +6,4 @@ func main() {
 	fmt.Println("hello world")
 }
 
-func Testme() {}
+func Testme() error { return nil }
