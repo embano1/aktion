@@ -1,0 +1,144 @@
+#  Copyright (c) 2021 VMware, Inc. All Rights Reserved.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Create release using this non-existing semantic tag for the specified ref'
+        required: true
+        type: string
+        default: 'v0.99.0'
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-20.04
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # for CHANGELOG
+          ref: ${{ github.ref }} # branch provided on dispatch
+
+      - name: Check tag does not exist
+        run: |
+          if [[ $(git tag -l ${{ inputs.tag }} ) ]]; then
+            echo "::error:: tag already exists"
+            exit 1
+          fi
+
+          # set tag environment variable
+          echo "TAG=${{ inputs.tag }}" >> $GITHUB_ENV
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Update version.go
+        run: |
+          # strip semantic v
+          export GOVMOMI_VERSION=${TAG#"v"}
+
+          sed -i "s/const SDKVersion.*/const SDKVersion = \"$GOVMOMI_VERSION\"/" internal/version.go
+          git --no-pager diff version/version.go
+
+          # configure author
+          # https://github.community/t/github-actions-bot-email-address/17204/6
+          git config --local user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config --local user.name "GitHub Action"
+
+          # commit changes
+          git add version/version.go
+          git commit -s -m "chore: Update version.go for ${TAG}"
+
+      - name: Create and push changes and tag
+        run: |
+          git tag -a ${TAG} -m "Release ${TAG}"
+          git push --atomic --follow-tags origin ${{ github.ref }}
+
+      - name: Create RELEASE CHANGELOG
+        env:
+          IMAGE: quay.io/git-chglog/git-chglog
+          # https://quay.io/repository/git-chglog/git-chglog from tag v0.14.2
+          IMAGE_SHA: 998e89dab8dd8284cfff5f8cfb9e9af41fe3fcd4671f2e86a180e453c20959e3
+        run: |
+          # generate CHANGELOG for this Github release tag only
+          docker run --rm -v $PWD:/workdir ${IMAGE}@sha256:${IMAGE_SHA} -o RELEASE_CHANGELOG.md --sort semver --tag-filter-pattern '^v[0-9]+' ${TAG}
+
+      - name: Archive CHANGELOG
+        uses: actions/upload-artifact@v3
+        continue-on-error: true
+        with:
+          name: CHANGELOG
+          path: |
+            ./RELEASE_CHANGELOG.md
+          retention-days: 14
+
+      - name: Create Release and build/push Artifacts
+        uses: goreleaser/goreleaser-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version: latest
+          args: release --rm-dist --release-notes RELEASE_CHANGELOG.md # will push artefacts and container images
+
+  pull-request:
+    needs: release
+    name: Create CHANGELOG.md PR
+    runs-on: ubuntu-20.04
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # for changelog
+          fetch-depth: 0
+          ref: ${{ github.ref }} # branch provided on dispatch
+
+      - name: Create CHANGELOG.md commit
+        env:
+          IMAGE: quay.io/git-chglog/git-chglog
+          # https://quay.io/repository/git-chglog/git-chglog from tag v0.14.2
+          IMAGE_SHA: 998e89dab8dd8284cfff5f8cfb9e9af41fe3fcd4671f2e86a180e453c20959e3
+        run: |
+          # update CHANGELOG
+          docker run --rm -v $PWD:/workdir ${IMAGE}@sha256:${IMAGE_SHA} -o CHANGELOG.md --sort semver --tag-filter-pattern '^v[0-9]+' -t .chglog/CHANGELOG.tpl.md
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "Update CHANGELOG for ${{ inputs.tag }}"
+          delete-branch: true
+          title: "Update CHANGELOG for ${{ inputs.tag }}"
+          signoff: true
+          reviewers: embano1,dougm
+          draft: false
+          body: |
+            ### Update CHANGELOG.md for new release.
+
+            > **Note** 
+            > Due to a [limitation](https://github.com/peter-evans/create-pull-request/blob/master/docs/concepts-guidelines.md#triggering-further-workflow-runs) in Github Actions please **close and immediately reopen** this PR to trigger the required workflow checks before merging.
+
+      - name: Pull Request Information
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
