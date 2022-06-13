@@ -20,4 +20,4 @@ package internal
 const SDKName = "govmomi"
 
 // SDKVersion is the version of this SDK
-const SDKVersion = "0.3.0"
+const SDKVersion = "0.3.1"
