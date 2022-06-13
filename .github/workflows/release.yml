@@ -104,6 +104,7 @@ jobs:
     name: Create CHANGELOG.md PR
     runs-on: ubuntu-20.04
     continue-on-error: true
+    if: github.ref == 'refs/heads/main' # only update CHANGELOG when creating a release on main
 
     steps:
       - name: Checkout
