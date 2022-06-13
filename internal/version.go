@@ -22,6 +22,6 @@ const SDKName = "govmomi"
 
 // SDKVersion is the version of this SDK
 // TODO: change to other name, e.g. ClientVersion
-const SDKVersion = "0.2.1"
+const SDKVersion = "0.2.2"
 
 // TODO: add GenerateDefaultAgent func
