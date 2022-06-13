@@ -17,6 +17,7 @@ limitations under the License.
 package internal
 
 // SDKName is the name of this SDK
+// TODO: change to other name
 const SDKName = "govmomi"
 
 // SDKVersion is the version of this SDK
