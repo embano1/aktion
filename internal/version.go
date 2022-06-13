@@ -17,8 +17,11 @@ limitations under the License.
 package internal
 
 // SDKName is the name of this SDK
-// TODO: change to other name
+// TODO: change to other name, e.g. ClientName
 const SDKName = "govmomi"
 
 // SDKVersion is the version of this SDK
+// TODO: change to other name, e.g. ClientVersion
 const SDKVersion = "0.2.1"
+
+// TODO: add GenerateDefaultAgent func
