@@ -1,6 +1,23 @@
 
+<a name="v0.3.1"></a>
+## [Release v0.3.1](https://github.com/vmware/govmomi/compare/v0.3.0...v0.3.1)
+
+> Release Date: 2022-06-13
+
+### 🧹 Chore
+
+- [6a4ce37]	Update version.go for v0.3.1
+- [bf3dbed]	Update release.yaml
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [6a4ce37]	chore: Update version.go for v0.3.1
+- [bf3dbed]	chore: Update release.yaml
+
 <a name="v0.3.0"></a>
-## [Release v0.3.0](https://github.com/vmware/govmomi/compare/v0.2.1...v0.3.0)
+## [Release v0.3.0](https://github.com/vmware/govmomi/compare/v0.2.2...v0.3.0)
 
 > Release Date: 2022-06-13
 
@@ -13,6 +30,26 @@
 ### 📖 Commits
 
 - [36aab56]	chore: Update version.go for v0.3.0
+
+<a name="v0.2.2"></a>
+## [Release v0.2.2](https://github.com/vmware/govmomi/compare/v0.2.1...v0.2.2)
+
+> Release Date: 2022-06-13
+
+### 💫 API Changes
+
+- [9586ac1]	TODOs in version.go
+
+### 🧹 Chore
+
+- [fff2c5a]	Update version.go for v0.2.2
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [fff2c5a]	chore: Update version.go for v0.2.2
+- [9586ac1]	api: TODOs in version.go
 
 <a name="v0.2.1"></a>
 ## [Release v0.2.1](https://github.com/vmware/govmomi/compare/v0.2.0...v0.2.1)
