@@ -57,7 +57,7 @@ jobs:
           export GOVMOMI_VERSION=${TAG#"v"}
 
           sed -i "s/const SDKVersion.*/const SDKVersion = \"$GOVMOMI_VERSION\"/" internal/version.go
-          git --no-pager diff version/version.go
+          git --no-pager diff internal/version.go
 
           # configure author
           # https://github.community/t/github-actions-bot-email-address/17204/6
@@ -65,7 +65,7 @@ jobs:
           git config --local user.name "GitHub Action"
 
           # commit changes
-          git add version/version.go
+          git add internal/version.go
           git commit -s -m "chore: Update version.go for ${TAG}"
 
       - name: Create and push changes and tag
