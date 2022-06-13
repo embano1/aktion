@@ -130,7 +130,7 @@ jobs:
           delete-branch: true
           title: "Update CHANGELOG for ${{ inputs.tag }}"
           signoff: true
-          reviewers: embano1,dougm
+          reviewers: embano1
           draft: false
           body: |
             ### Update CHANGELOG.md for new release.
