@@ -1,1 +1,4 @@
 dist
+
+# ignore RELEASE-specific CHANGELOG
+/RELEASE_CHANGELOG.md
