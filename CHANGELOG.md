@@ -1,4 +1,21 @@
 
+<a name="v0.3.0"></a>
+## [Release v0.3.0](https://github.com/vmware/govmomi/compare/v0.2.0...v0.3.0)
+
+> Release Date: 2022-06-13
+
+### 🧹 Chore
+
+- [36aab56]	Update version.go for v0.3.0
+- [06aed8e]	Fix release
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [36aab56]	chore: Update version.go for v0.3.0
+- [06aed8e]	chore: Fix release
+
 <a name="v0.2.0"></a>
 ## [Release v0.2.0](https://github.com/vmware/govmomi/compare/v0.1.2...v0.2.0)
 
