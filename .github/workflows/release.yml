@@ -22,6 +22,10 @@ on:
         required: true
         type: string
         default: 'v0.99.0'
+      dryrun:
+        description: 'Verify release workflow without pushing any changes (catches most but not all errors)'
+        type: boolean
+        required: false
 
 jobs:
   release:
@@ -68,10 +72,15 @@ jobs:
           git add internal/version.go
           git commit -s -m "chore: Update version.go for ${TAG}"
 
-      - name: Create and push changes and tag
+      - name: Create tag
         run: |
           git tag -a ${TAG} -m "Release ${TAG}"
+
+      - name: Push changes and tag
+        if: ${{ !inputs.dryrun }}
+        run: |
           git push --atomic --follow-tags origin ${{ github.ref }}
+
 
       - name: Create RELEASE CHANGELOG
         env:
@@ -91,7 +100,18 @@ jobs:
             ./RELEASE_CHANGELOG.md
           retention-days: 14
 
+      - name: Simulate Release without pushing Artifacts
+        if: ${{ inputs.dryrun }}
+        uses: goreleaser/goreleaser-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version: latest
+          args: release --snapshot --rm-dist --release-notes RELEASE_CHANGELOG.md # will push artefacts and container images
+
+
       - name: Create Release and build/push Artifacts
+        if: ${{ !inputs.dryrun }}
         uses: goreleaser/goreleaser-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -104,7 +124,7 @@ jobs:
     name: Create CHANGELOG.md PR
     runs-on: ubuntu-20.04
     continue-on-error: true
-    if: github.ref == 'refs/heads/main' # only update CHANGELOG when creating a release on main
+    if: ${{ github.ref == 'refs/heads/main' && !inputs.dryrun }} # only update CHANGELOG when creating a release on main
 
     steps:
       - name: Checkout
