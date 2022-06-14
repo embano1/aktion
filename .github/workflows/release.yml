@@ -26,6 +26,7 @@ on:
         description: 'Verify release workflow without pushing any changes (catches most but not all errors)'
         type: boolean
         required: false
+        default: true
 
 jobs:
   release:
