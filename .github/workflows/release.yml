@@ -15,13 +15,16 @@
 name: Release
 
 on:
+  push:
+    tags:
+      - "v*"
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Create release using this non-existing semantic tag for the specified ref'
+        description: "Create release using this non-existing semantic tag for the specified ref"
         required: true
         type: string
-        default: 'v0.99.0'
+        default: "v0.99.0"
 
 jobs:
   release:
