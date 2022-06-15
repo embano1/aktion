@@ -1,4 +1,24 @@
 
+<a name="v0.5.0"></a>
+## [Release v0.5.0](https://github.com/vmware/govmomi/compare/v0.4.1...v0.5.0)
+
+> Release Date: 2022-06-15
+
+### 💫 API Changes
+
+- [a969e60]	no change for 0.5.0
+
+### 🧹 Chore
+
+- [6941e3f]	Update version.go for v0.5.0
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [6941e3f]	chore: Update version.go for v0.5.0
+- [a969e60]	api: no change for 0.5.0
+
 <a name="v0.4.1"></a>
 ## [Release v0.4.1](https://github.com/vmware/govmomi/compare/v0.4.0...v0.4.1)
 
@@ -28,7 +48,7 @@
 - [fc30a61]	add dryrun release mode
 
 <a name="v0.4.0"></a>
-## [Release v0.4.0](https://github.com/vmware/govmomi/compare/v0.3.2...v0.4.0)
+## [Release v0.4.0](https://github.com/vmware/govmomi/compare/v0.3.3...v0.4.0)
 
 > Release Date: 2022-06-13
 
@@ -46,6 +66,26 @@
 
 - [d22ccaf]	chore: Update version.go for v0.4.0
 - [93658fc]	api: no change
+
+<a name="v0.3.3"></a>
+## [Release v0.3.3](https://github.com/vmware/govmomi/compare/v0.3.2...v0.3.3)
+
+> Release Date: 2022-06-15
+
+### 💫 API Changes
+
+- [c940082]	no change for 0.3.3
+
+### 🧹 Chore
+
+- [1dd4e7f]	Update version.go for v0.3.3
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [1dd4e7f]	chore: Update version.go for v0.3.3
+- [c940082]	api: no change for 0.3.3
 
 <a name="v0.3.2"></a>
 ## [Release v0.3.2](https://github.com/vmware/govmomi/compare/v0.3.1...v0.3.2)
