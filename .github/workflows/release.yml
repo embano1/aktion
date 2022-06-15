@@ -48,11 +48,13 @@ jobs:
           # do not allow release on master branch
           if [[ ${{ github.ref }} == refs/heads/main ]]; then
             echo "::error:: release must be done on a release branch"
+            exit 1
           fi
 
           # check it starts with "v"
           if [[ ${{ inputs.tag }} != v* ]]; then 
             echo "::error:: tag must have a \"v\" prefix"
+            exit 1
           fi
 
           # check it does not exist
