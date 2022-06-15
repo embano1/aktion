@@ -43,8 +43,13 @@ jobs:
           fetch-depth: 0 # for CHANGELOG
           ref: ${{ github.ref }} # branch provided on dispatch
 
-      - name: Validate tag
+      - name: Validate branch and tag
         run: |
+          # do not allow release on master branch
+          if [[ ${{ github.ref }} == refs/heads/master ]]; then
+            echo "::error:: release must be done on a release branch"
+          fi
+
           # check it starts with "v"
           if [[ ${{ inputs.tag }} != v* ]]; then 
             echo "::error:: tag must have a \"v\" prefix"
