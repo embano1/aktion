@@ -46,7 +46,7 @@ jobs:
       - name: Validate branch and tag
         run: |
           # do not allow release on master branch
-          if [[ ${{ github.ref }} == refs/heads/master ]]; then
+          if [[ ${{ github.ref }} == refs/heads/main ]]; then
             echo "::error:: release must be done on a release branch"
           fi
 
