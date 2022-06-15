@@ -1,6 +1,26 @@
 
+<a name="v0.5.1"></a>
+## [Release v0.5.1](https://github.com/vmware/govmomi/compare/v0.5.0...v0.5.1)
+
+> Release Date: 2022-06-15
+
+### 💫 API Changes
+
+- [fa49935]	no change for 0.5.1
+
+### 🧹 Chore
+
+- [1643ac6]	Update version.go for v0.5.1
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [1643ac6]	chore: Update version.go for v0.5.1
+- [fa49935]	api: no change for 0.5.1
+
 <a name="v0.5.0"></a>
-## [Release v0.5.0](https://github.com/vmware/govmomi/compare/v0.4.1...v0.5.0)
+## [Release v0.5.0](https://github.com/vmware/govmomi/compare/v0.4.2...v0.5.0)
 
 > Release Date: 2022-06-15
 
@@ -18,6 +38,26 @@
 
 - [6941e3f]	chore: Update version.go for v0.5.0
 - [a969e60]	api: no change for 0.5.0
+
+<a name="v0.4.2"></a>
+## [Release v0.4.2](https://github.com/vmware/govmomi/compare/v0.4.1...v0.4.2)
+
+> Release Date: 2022-06-15
+
+### 💫 API Changes
+
+- [c56b654]	no change for 0.4.2
+
+### 🧹 Chore
+
+- [b1edc5f]	Update version.go for v0.4.2
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [b1edc5f]	chore: Update version.go for v0.4.2
+- [c56b654]	api: no change for 0.4.2
 
 <a name="v0.4.1"></a>
 ## [Release v0.4.1](https://github.com/vmware/govmomi/compare/v0.4.0...v0.4.1)
