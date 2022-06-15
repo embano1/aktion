@@ -22,4 +22,4 @@ const SDKName = "govmomi"
 
 // SDKVersion is the version of this SDK
 // TODO: rename to ClientVersion
-const SDKVersion = "0.3.2"
+const SDKVersion = "0.3.3"
