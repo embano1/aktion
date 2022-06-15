@@ -1,4 +1,68 @@
 
+<a name="v0.4.1"></a>
+## [Release v0.4.1](https://github.com/vmware/govmomi/compare/v0.4.0...v0.4.1)
+
+> Release Date: 2022-06-15
+
+### 💫 API Changes
+
+- [8324807]	no change 2
+
+### 🧹 Chore
+
+- [80e49a6]	Update version.go for v0.4.1
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [80e49a6]	chore: Update version.go for v0.4.1
+- [ef277fd]	update release workflow
+- [76fb190]	update release workflow
+- [e384a73]	update release workflow
+- [ddaba9a]	update release workflow
+- [b718737]	update release workflow
+- [f7aefe2]	update release workflow
+- [8324807]	api: no change 2
+- [3bf39aa]	dryrun by default
+- [fc30a61]	add dryrun release mode
+
+<a name="v0.4.0"></a>
+## [Release v0.4.0](https://github.com/vmware/govmomi/compare/v0.3.2...v0.4.0)
+
+> Release Date: 2022-06-13
+
+### 💫 API Changes
+
+- [93658fc]	no change
+
+### 🧹 Chore
+
+- [d22ccaf]	Update version.go for v0.4.0
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [d22ccaf]	chore: Update version.go for v0.4.0
+- [93658fc]	api: no change
+
+<a name="v0.3.2"></a>
+## [Release v0.3.2](https://github.com/vmware/govmomi/compare/v0.3.1...v0.3.2)
+
+> Release Date: 2022-06-13
+
+### 🧹 Chore
+
+- [3748084]	Update version.go for v0.3.2
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [3748084]	chore: Update version.go for v0.3.2
+- [1d567c6]	TODO in release-0.3.1
+
 <a name="v0.3.1"></a>
 ## [Release v0.3.1](https://github.com/vmware/govmomi/compare/v0.3.0...v0.3.1)
 
@@ -17,7 +81,7 @@
 - [bf3dbed]	chore: Update release.yaml
 
 <a name="v0.3.0"></a>
-## [Release v0.3.0](https://github.com/vmware/govmomi/compare/v0.2.1...v0.3.0)
+## [Release v0.3.0](https://github.com/vmware/govmomi/compare/v0.2.2...v0.3.0)
 
 > Release Date: 2022-06-13
 
@@ -30,6 +94,26 @@
 ### 📖 Commits
 
 - [36aab56]	chore: Update version.go for v0.3.0
+
+<a name="v0.2.2"></a>
+## [Release v0.2.2](https://github.com/vmware/govmomi/compare/v0.2.1...v0.2.2)
+
+> Release Date: 2022-06-13
+
+### 💫 API Changes
+
+- [9586ac1]	TODOs in version.go
+
+### 🧹 Chore
+
+- [fff2c5a]	Update version.go for v0.2.2
+
+### ⚠️ BREAKING
+
+### 📖 Commits
+
+- [fff2c5a]	chore: Update version.go for v0.2.2
+- [9586ac1]	api: TODOs in version.go
 
 <a name="v0.2.1"></a>
 ## [Release v0.2.1](https://github.com/vmware/govmomi/compare/v0.2.0...v0.2.1)
