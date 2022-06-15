@@ -145,7 +145,7 @@ jobs:
     runs-on: ubuntu-20.04
     continue-on-error: true
     # only update CHANGELOG for latest semver tag
-    if: ${{ !inputs.dryrun && ${{ needs.release.outputs.latesttag }} == true}}
+    if: ${{ !inputs.dryrun && needs.release.outputs.latesttag == 'true' }}
 
     steps:
       - name: Checkout
